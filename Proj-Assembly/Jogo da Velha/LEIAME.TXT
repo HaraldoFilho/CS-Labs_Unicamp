@@ -1,0 +1,34 @@
+##################################  J O G O   D A   V E L H A  ##################################
+
+1 - DESCRIÇÃO:
+
+Este é um Jogo da Velha para ser jogado entre dois computadores conectados pela porta serial.
+O funcionamento do jogo é muito simples e intuitivo, usando-se o mouse para efetuar as jogadas.
+A regra do jogo é a mesma do popular Jogo da Velha jogado em uma folha de papel.
+
+
+2 - INSTALAÇÃO:
+
+- Extraia para o Computador 1 o arquivo "Jogo da Velha.zip", que criará a pasta "Jogo da Velha".
+
+- Entre na pasta e execute CONFIGURA, escolhendo as opções de configuração do programa.
+
+- Repita o mesmo procedimento para o Computador 2.
+
+
+IMPORTANTE!: Escolha opções diferentes no Computador 1 e no Computador 2 para os parâmetros 
+( X / O ) e ( C / E ), caso contrário o jogo não funcionará corretamente.
+
+
+OBS: Execute CONFIGURA novamente se desejar alterar as configurações. 
+
+
+3 - COMO JOGAR:
+
+Após instalar o jogo nos dois computadores, dê dois cliques no ícone "Jogo da Velha" em ambos.
+Caso tenha sido escolhido exibir a abertura, espere a mesma terminar.
+Quando for mostrado o tabuleiro é só começar a jogar, seguindo as instruções dadas na tela.
+Para sair do jogo a qualquer momento, pressione ESC.
+
+
+BOM DIVERTIMENTO!!!

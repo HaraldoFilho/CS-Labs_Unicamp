@@ -1,0 +1,7 @@
+v 3
+file . "tb_reg.vhd" "20071123224607.000" "20071123204613.484":
+  entity tb_reg at 11( 596) + 0 on 25;
+  architecture behav of tb_reg at 18( 700) + 0 on 26;
+file . "../../../vhdl/reg.vhd" "20071113203724.000" "20071123204613.398":
+  entity reg at 1( 0) + 0 on 23;
+  architecture behavior of reg at 13( 291) + 0 on 24;

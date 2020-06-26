@@ -1,0 +1,141 @@
+CREATE DATABASE IF NOT EXISTS XYZ_536;
+USE XYZ_536;
+
+CREATE  TABLE IF NOT EXISTS `XYZ_536`.`USUARIO` (
+	`idUsuario` INT NOT NULL AUTO_INCREMENT ,
+	`Nome` VARCHAR(45) NULL ,
+	`CPF` VARCHAR(11) NULL ,
+	`LogIn` VARCHAR(20) NOT NULL ,
+	`senha` VARCHAR(7) NOT NULL ,
+	`Tipo` ENUM('G','C','B') NULL ,
+	PRIMARY KEY (`idUsuario`) )
+;
+
+CREATE  TABLE IF NOT EXISTS `XYZ_536`.`COMPRA` (
+  	`idCompra` INT NOT NULL AUTO_INCREMENT ,
+  	`AutPag` INT NULL DEFAULT 0 ,
+  	`total` FLOAT NULL DEFAULT 0 ,
+  	`dataHora` timeStamp NULL ,
+  	`USUARIO_idUsuario` INT NULL ,
+ 	PRIMARY KEY (`idCompra`) ,
+  	INDEX fk_COMPRA_USUARIO (`USUARIO_idUsuario` ASC) ,
+  	CONSTRAINT `fk_COMPRA_USUARIO`
+    FOREIGN KEY (`USUARIO_idUsuario` )
+  	REFERENCES `XYZ_536`.`USUARIO` (`idUsuario` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+; 
+
+CREATE  TABLE IF NOT EXISTS `XYZ_536`.`LOCAL` (
+	`idLocal` INT NOT NULL AUTO_INCREMENT ,
+	`cidade` VARCHAR(45) NULL ,
+	`estabelecimento` VARCHAR(45) NULL ,
+	`sala` INT NULL ,
+	`vagasA` INT NULL CHECK (vagasA > 0),
+	`vagasB` INT NULL CHECK (vagasB > 0),
+	`vagasC` INT NULL CHECK (vagasC > 0),
+	PRIMARY KEY (`idLocal`) )
+;
+
+CREATE  TABLE IF NOT EXISTS `XYZ_536`.`GENERO` (
+ 	`Genero` VARCHAR(20) NOT NULL ,
+	PRIMARY KEY (`Genero`) )
+;
+
+CREATE  TABLE IF NOT EXISTS `XYZ_536`.`ESPETACULO` (
+	`idEspetaculo` INT NOT NULL AUTO_INCREMENT ,
+	`titulo` VARCHAR(50) NULL ,
+	`elenco` TEXT NULL ,
+	`sinopse` TEXT NULL ,
+    `diretor` VARCHAR(45) NULL ,
+	`duracao` INT NULL ,
+	`ClassEtaria` ENUM('LIVRE','10 ANOS','12 ANOS','14 ANOS','16 ANOS','18 ANOS') NULL ,
+	`GENERO_Genero` VARCHAR(10) NULL ,
+	PRIMARY KEY (`idEspetaculo`) ,
+	INDEX fk_ESPETACULO_GENERO (`GENERO_Genero` ASC) ,
+	CONSTRAINT `fk_ESPETACULO_GENERO`
+    FOREIGN KEY (`GENERO_Genero` )
+    REFERENCES `XYZ_536`.`GENERO` (`Genero` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+;
+
+CREATE TABLE IF NOT EXISTS `XYZ_536`.`FILME` (
+	`idEspetaculo` INT NOT NULL AUTO_INCREMENT ,
+	`titOriginal` CHAR(45),	
+	`pais` CHAR(15) NOT NULL,
+	`anoLanc` INT,
+	`traducao` ENUM('Dublado','Legendado'),
+	PRIMARY KEY (`idEspetaculo`) ,
+    FOREIGN KEY (`idEspetaculo`)
+    REFERENCES `XYZ_536`.`ESPETACULO` (`idEspetaculo` )
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION)	
+;
+
+CREATE TABLE IF NOT EXISTS `XYZ_536`.`PECA` (
+	`idEspetaculo` INT NOT NULL AUTO_INCREMENT ,
+	`Produtor` CHAR(45),
+	`Autor` CHAR(45),
+	PRIMARY KEY (`idEspetaculo`) ,
+    FOREIGN KEY (`idEspetaculo`)
+    REFERENCES `XYZ_536`.`ESPETACULO` (`idEspetaculo` )
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION)	
+;
+
+
+CREATE  TABLE IF NOT EXISTS `XYZ_536`.`EVENTO` (
+	`idevento` INT NOT NULL AUTO_INCREMENT ,
+	`etipo` ENUM('FILME','TEATRO') NULL ,
+	`ESPETACULO_idEspetaculo` INT NULL ,
+	`LOCAL_idLocal` INT NULL ,
+	`eHorario` timeStamp NULL ,
+	`precoA` FLOAT NOT NULL ,
+	`precoB` FLOAT NOT NULL ,
+	`precoC` FLOAT NOT NULL ,
+	`dispA` INT NULL CHECK (dispA >= 0),
+	`dispB` INT NULL CHECK (dispB >= 0),
+	`dispC` INT NULL CHECK (dispC >= 0),
+	PRIMARY KEY (`idevento`) ,
+	INDEX fk_EVENTO_ESPETACULO (`ESPETACULO_idEspetaculo` ASC) ,
+	INDEX fk_EVENTO_LOCAL (`LOCAL_idLocal` ASC) ,
+	CONSTRAINT `fk_EVENTO_ESPETACULO`
+    FOREIGN KEY (`ESPETACULO_idEspetaculo` )
+    REFERENCES `XYZ_536`.`ESPETACULO` (`idEspetaculo` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+	CONSTRAINT `fk_EVENTO_LOCAL`
+    FOREIGN KEY (`LOCAL_idLocal` )
+    REFERENCES `XYZ_536`.`LOCAL` (`idLocal` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+;
+
+CREATE  TABLE IF NOT EXISTS `XYZ_536`.`BILHETE` (
+	`idBilhete` INT NOT NULL AUTO_INCREMENT ,
+	`doc` VARCHAR(12) NOT NULL ,
+	`cat` ENUM('A','B','C','D','E','F') NULL ,
+	`Espectador` VARCHAR(45) NOT NULL ,
+	`tipoDoc` ENUM('RG','CPF','NASC','PASS','CIC','CNH') NOT NULL ,
+	`CadNum` INT NULL ,
+    `Status` ENUM('V','C','D') NULL ,
+	`PRECO` FLOAT null,
+	`COMPRA_idCompra` INT NULL ,
+	`EVENTO_idevento` INT NULL ,
+	PRIMARY KEY (`idBilhete`) ,
+	INDEX fk_BILHETE_COMPRA (`COMPRA_idCompra` ASC) ,
+	INDEX fk_BILHETE_EVENTO (`EVENTO_idevento` ASC) ,
+	CONSTRAINT `fk_BILHETE_COMPRA`
+    FOREIGN KEY (`COMPRA_idCompra` )
+    REFERENCES `XYZ_536`.`COMPRA` (`idCompra` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+	CONSTRAINT `fk_BILHETE_EVENTO`
+    FOREIGN KEY (`EVENTO_idevento` )
+    REFERENCES `XYZ_536`.`EVENTO` (`idevento` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+;
+
+COMMIT;
