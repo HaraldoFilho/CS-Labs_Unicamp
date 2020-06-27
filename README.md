@@ -1,18 +1,18 @@
 # Laboratório de Ciência da Computação - Unicamp
 Seleção de alguns projetos e labs executados individualmente ou em grupo durante o curso de Ciência da Computação da Unicamp entre os anos de 2006 e 2010
 
-## [Convex Hull](https://github.com/HaraldoFilho/CS-Labs_Unicamp/tree/master/Labs-LISP)
-Projeto Prático da disciplina "Paradigmas de Programação" (1s2008)
+## [Convex Hull (Lisp)](https://github.com/HaraldoFilho/CS-Labs_Unicamp/tree/master/Labs-LISP)
+Labs da disciplina "Paradigmas de Programação" (1s2008)
 
 Linguagem: **_Lisp_**
 
-## [Convex Hull](https://github.com/HaraldoFilho/CS-Labs_Unicamp/tree/master/Labs-Prolog)
-Projeto Prático da disciplina "Paradigmas de Programação" (1s2008)
+## [Convex Hull (Prolog)](https://github.com/HaraldoFilho/CS-Labs_Unicamp/tree/master/Labs-Prolog)
+Labs da disciplina "Paradigmas de Programação" (1s2008)
 
 Linguagem: **_Prolog_**
 
 ## [Laboratório de Banco de Dados](https://github.com/HaraldoFilho/CS-Labs_Unicamp/tree/master/Labs-SQL)
-Projeto Prático da disciplina "Bancos de Dados: Teoria e Prática" (1s2008)
+Labs da disciplina "Bancos de Dados: Teoria e Prática" (1s2008)
 
 Linguagem: **_SQL_**
 
